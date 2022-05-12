@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float upForce = 400f;
 
     private Rigidbody2D rb2d;
     bool canJump = false;
+
+    private void Awake()
+    {
+        MainMenu.Instance.CallMenu();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +34,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Ground")
+        if(collision.gameObject.name == "Ground" || collision.gameObject.name == "Block")
         {
             canJump = true;
         }
+    }
+
+    public void Death()
+    {
+        Debug.Log("DEAD");
+        Destroy(gameObject);
+        MainMenu.Instance.CallMenu();
     }
 }
