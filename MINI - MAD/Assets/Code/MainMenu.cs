@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Awake()
-    {
-        CallMenu();
-    }
-
     public static MainMenu Instance;
 
     [SerializeField] Button StartGameButton;
@@ -18,13 +13,6 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         StartGameButton.onClick.AddListener(StartGame);
-    }
-
-    public void CallMenu()
-    {
-        Debug.Log("BITCH");
-        SceneManager.LoadScene(0);
-        
     }
 
     public void StartGame()

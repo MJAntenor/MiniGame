@@ -2,18 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float upForce = 400f;
-
     private Rigidbody2D rb2d;
     bool canJump = false;
-
-    private void Awake()
-    {
-        MainMenu.Instance.CallMenu();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Ground" || collision.gameObject.name == "Block")
+        if(collision.gameObject.name == "Ground" || collision.gameObject.name == "Block(Clone)")
         {
             canJump = true;
         }
@@ -44,6 +39,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("DEAD");
         Destroy(gameObject);
-        MainMenu.Instance.CallMenu();
+        SceneManager.LoadScene(0); 
     }
 }
